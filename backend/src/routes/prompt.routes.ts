@@ -1,13 +1,13 @@
+import express from 'express';
+import { createPrompt } from '../controllers/prompt.controller';
+import { validateBodyFields } from '../middleware/validate';
 
-import { Router } from 'express';
-import { generateLesson } from '../services/openai.service';
+const router = express.Router();
 
-const router = Router();
-
-router.post('/', async (req, res) => {
-  const { prompt } = req.body;
-  const lesson = await generateLesson(prompt);
-  res.json({ lesson });
-});
+router.post(
+  '/',
+  validateBodyFields(['userId', 'categoryId', 'subCategoryId', 'promptText']),
+  createPrompt
+);
 
 export default router;

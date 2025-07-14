@@ -1,16 +1,16 @@
+import express from 'express';
+import { getCategories, getSubCategories } from '../controllers/category.controller';
+import { validateIdParam } from '../middleware/validate';
+import { checkCategoryExists } from '../middleware/dbCheck';
 
-import { Router } from 'express';
+const router = express.Router();
 
-const router = Router();
+router.get('/', getCategories);
 
-router.get('/', (req, res) => {
-  // list categories
-  res.json([{ id: 1, name: 'Science' }]);
-});
-
-router.get('/:id/sub-categories', (req, res) => {
-  // list sub categories by category id
-  res.json([{ id: 1, name: 'Space' }]);
-});
+router.get('/:id/sub-categories',
+  validateIdParam(),
+  checkCategoryExists(),
+  getSubCategories
+);
 
 export default router;

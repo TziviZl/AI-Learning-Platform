@@ -1,0 +1,38 @@
+2025-07-14T22:46:13.779Z [WARN]: Failed login attempt for phone 0501234567
+2025-07-14T22:48:56.105Z [WARN]: Authentication failed - invalid token
+2025-07-14T22:51:29.680Z [WARN]: Authentication failed - invalid token
+2025-07-14T22:58:41.259Z [WARN]: Failed login attempt for phone 0501234567
+2025-07-14T22:59:41.112Z [WARN]: DB check failed - phone 0501234567 already exists
+2025-07-14T22:59:52.865Z [INFO]: Created user with phone 0521234567
+2025-07-14T23:00:38.834Z [WARN]: Failed login attempt for phone 0521234567
+2025-07-14T23:07:05.735Z [WARN]: Failed login attempt for phone 0521234567
+2025-07-14T23:07:18.812Z [INFO]: Fetched all categories
+2025-07-14T23:07:24.925Z [INFO]: Fetched subcategories for category 1
+2025-07-14T23:07:35.517Z [INFO]: Fetched prompts for user 1
+2025-07-14T23:07:56.867Z [INFO]: Calling OpenAI to generate lesson for prompt: "Explain polymorphism in OOP..."
+2025-07-14T23:08:05.292Z [INFO]: OpenAI returned response successfully.
+2025-07-14T23:08:05.323Z [INFO]: Created prompt for user 1 on 1/1
+2025-07-14T23:19:54.637Z [WARN]: Failed login attempt for phone 0521234567
+2025-07-14T23:21:04.679Z [WARN]: Failed login attempt for phone 0521234567
+2025-07-14T23:27:09.024Z [WARN]: Failed login attempt for phone 0521234567
+2025-07-14T23:28:34.000Z [INFO]: Created user with phone 0531234567
+2025-07-14T23:29:13.740Z [INFO]: User 3 logged in
+2025-07-14T23:31:01.245Z [WARN]: Authentication failed - invalid token
+2025-07-14T23:41:02.567Z [WARN]: Authentication failed - invalid token
+2025-07-14T23:41:16.047Z [INFO]: User 4 logged in
+2025-07-14T23:41:49.290Z [WARN]: DB check failed - phone 0501234567 already exists
+2025-07-14T23:41:49.395Z [INFO]: Fetched prompts for user 1
+2025-07-14T23:41:49.469Z [WARN]: Authentication failed - invalid token
+2025-07-14T23:41:49.566Z [INFO]: Calling OpenAI to generate lesson for prompt: "Explain polymorphism in OOP..."
+2025-07-14T23:41:59.330Z [INFO]: OpenAI returned response successfully.
+2025-07-14T23:41:59.349Z [INFO]: Created prompt for user 1 on 1/1
+2025-07-14T23:41:59.391Z [INFO]: Fetched all categories
+2025-07-14T23:41:59.483Z [INFO]: Fetched subcategories for category 1
+2025-07-14T23:41:59.543Z [WARN]: Authentication failed - invalid token
+2025-07-14T23:41:59.577Z [WARN]: Authentication failed - invalid token
+2025-07-14T23:41:59.630Z [WARN]: Authentication failed - invalid token
+2025-07-14T23:41:59.687Z [WARN]: Authentication failed - invalid token
+2025-07-14T23:41:59.753Z [WARN]: Failed login attempt for phone 0501234567
+2025-07-14T23:42:25.296Z [WARN]: Authentication failed - invalid token
+2025-07-14T23:42:36.782Z [INFO]: User 4 logged in
+2025-07-14T23:43:17.235Z [INFO]: User 3 logged in

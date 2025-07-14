@@ -1,15 +1,32 @@
-import { Router } from 'express';
+import express from 'express';
+import { listUsers, listUserPrompts, updateUser, deleteUser } from '../controllers/admin.controller';
+import { validateIdParam } from '../middleware/validate';
+import { checkUserExists } from '../middleware/dbCheck';
+import { authenticate, authorizeAdmin } from '../middleware/auth';
 
-const router = Router();
+const router = express.Router();
 
-router.get('/users', (req, res) => {
-  // list all users
-  res.json([{ id: 1, name: 'Israel' }]);
-});
+router.get('/users', authenticate, authorizeAdmin, listUsers);
 
-router.get('/users/:id/prompts', (req, res) => {
-  // list prompt history for user
-  res.json([{ prompt: 'Teach me about black holes', response: '...' }]);
-});
+router.get('/users/:id/prompts',
+  authenticate, authorizeAdmin,
+  validateIdParam(),
+  checkUserExists(),
+  listUserPrompts
+);
+
+router.patch('/users/:id',
+  authenticate, authorizeAdmin,
+  validateIdParam(),
+  checkUserExists(),
+  updateUser
+);
+
+router.delete('/users/:id',
+  authenticate, authorizeAdmin,
+  validateIdParam(),
+  checkUserExists(),
+  deleteUser
+);
 
 export default router;

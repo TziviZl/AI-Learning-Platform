@@ -1,16 +1,29 @@
+import express from 'express';
+import { createUser, getUserPrompts, updateSelf } from '../controllers/user.controller';
+import { validateBodyFields, validatePhoneField, validateIdParam } from '../middleware/validate';
+import { ensurePhoneUnique } from '../middleware/dbCheck';
+import { authenticate } from '../middleware/auth';
 
-import { Router } from 'express';
+const router = express.Router();
 
-const router = Router();
+router.post(
+  '/',
+  validateBodyFields(['name', 'phone', 'password']),
+  validatePhoneField('phone'),
+  ensurePhoneUnique(),
+  createUser
+);
 
-router.post('/', (req, res) => {
-  // register user
-  res.json({ message: 'User created' });
-});
+router.get(
+  '/:id/prompts',
+  validateIdParam(),
+  getUserPrompts
+);
 
-router.get('/:id', (req, res) => {
-  // get user by id
-  res.json({ message: 'User info' });
-});
+router.patch(
+  '/me',
+  authenticate,
+  updateSelf
+);
 
 export default router;
