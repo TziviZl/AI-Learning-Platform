@@ -13,7 +13,15 @@ import promptRoutes from './routes/prompt.routes';
 import adminRoutes from './routes/admin.routes';
 import authRoutes from './routes/auth.routes';
 
+console.log('1. Starting app.ts - Before dotenv.config()');
 dotenv.config();
+console.log('1.1. After dotenv.config()');
+
+console.log(`DATABASE_URL: ${process.env.DATABASE_URL ? 'Loaded' : 'NOT LOADED'}`);
+console.log(`JWT_SECRET: ${process.env.JWT_SECRET ? 'Loaded' : 'NOT LOADED'}`);
+console.log(`OPENAI_API_KEY: ${process.env.OPENAI_API_KEY ? 'Loaded' : 'NOT LOADED'}`);
+console.log(`PORT (from env): ${process.env.PORT}`);
+console.log(`CORS_ORIGIN (from env): ${process.env.CORS_ORIGIN}`);
 
 const allowedOrigin = process.env.CORS_ORIGIN || 'http://localhost:5173'; // הוספת משתנה סביבה דינמי
 const corsOptions = {
@@ -49,7 +57,7 @@ app.use((req: Request, res: Response, next: NextFunction) => {
 app.use(errorHandler);
 
 app.listen(PORT, () => {
-  logger.info(`Server running on port ${PORT}`);
+  console.log(`Server running on port ${PORT}`);
 });
 
 export default app;
