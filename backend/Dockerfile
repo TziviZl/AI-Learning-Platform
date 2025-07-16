@@ -21,6 +21,8 @@ RUN npx ts-node src/scripts/seed.ts
 
 RUN npm run build
 
+RUN cp src/favicon.ico dist/favicon.ico
+
 EXPOSE 10000 
 
 ENV NODE_TLS_REJECT_UNAUTHORIZED=0
