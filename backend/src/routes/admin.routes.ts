@@ -1,8 +1,8 @@
 import express from 'express';
 import { listUsers, listUserPrompts, updateUser, deleteUser } from '../controllers/admin.controller';
-import { validateIdParam, validate } from '../middleware/validateRequest';
-import { checkUserExists } from '../middleware/db.middleware';
-import { authenticate, authorizeAdmin } from '../middleware/auth.middleware';
+import { validateIdParam, validate } from '../middlewares/validateRequest';
+import { checkUserExists } from '../middlewares/db.middleware';
+import { authenticate, authorizeAdmin } from '../middlewares/auth.middleware';
 import { adminUpdateUserSchema } from '../schemas/authSchemas';
 
 const router = express.Router();

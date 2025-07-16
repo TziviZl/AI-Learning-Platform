@@ -1,4 +1,4 @@
-FROM node:20-alpine as build-stage
+FROM node:20-alpine AS build-stage
 
 WORKDIR /app
 
@@ -10,11 +10,10 @@ COPY . .
 
 RUN npm run build
 
-FROM nginx:alpine as production-stage
+FROM nginx:alpine AS production-stage
 
 COPY --from=build-stage /app/dist /usr/share/nginx/html
 
-
-EXPOSE 5173 # Expose the port Nginx will listen on (adjust if your frontend runs on a different port)
+EXPOSE 5173
 
 CMD ["nginx", "-g", "daemon off;"]

@@ -1,7 +1,7 @@
 import express from 'express';
 import { getCategories, getSubCategories } from '../controllers/category.controller';
-import { validateIdParam } from '../middleware/validateRequest';
-import { checkCategoryExists } from '../middleware/db.middleware';
+import { validateIdParam } from '../middlewares/validateRequest';
+import { checkCategoryExists } from '../middlewares/db.middleware';
 
 const router = express.Router();
 

@@ -1,7 +1,7 @@
 import express from 'express';
 import { getUserPrompts, updateSelf } from '../controllers/user.controller'; // createUser removed from import
-import { validateIdParam, validate } from '../middleware/validateRequest';
-import { authenticate } from '../middleware/auth.middleware';
+import { validateIdParam, validate } from '../middlewares/validateRequest';
+import { authenticate } from '../middlewares/auth.middleware';
 import { updateProfileSchema } from '../schemas/authSchemas'; // registerSchema removed from import
 
 const router = express.Router();

@@ -1,13 +1,13 @@
 import { Request, Response, NextFunction } from 'express';
 import logger from '../utils/logger';
-import AppError from '../utils/AppError'; 
-import { Prisma } from '@prisma/client'; 
-import { JsonWebTokenError, TokenExpiredError } from 'jsonwebtoken'; 
+import AppError from '../utils/AppError';
+import { PrismaClientKnownRequestError } from '@prisma/client/runtime/library'; // Changed import path for PrismaClientKnownRequestError
+import { JsonWebTokenError, TokenExpiredError } from 'jsonwebtoken';
 
 export function errorHandler(err: any, req: Request, res: Response, next: NextFunction) {
   let statusCode = err.statusCode || 500;
   let message = err.message || 'Internal Server Error';
-  let details = err.details; // For validation errors, etc.
+  let details = err.details; 
 
   if (statusCode === 500) {
     logger.error(`Unhandled Server Error: ${err.stack || err}`);
@@ -25,13 +25,13 @@ export function errorHandler(err: any, req: Request, res: Response, next: NextFu
   } else if (err instanceof TokenExpiredError) {
     statusCode = 401;
     message = 'Token has expired. Please log in again.';
-  } else if (err instanceof Prisma.PrismaClientKnownRequestError) {
+  } else if (err instanceof PrismaClientKnownRequestError) { // Used directly after specific import
     if (err.code === 'P2002') {
-      statusCode = 409; 
+      statusCode = 409; // Conflict
       message = `Duplicate field value: ${err.meta?.target}. Please use another value.`;
       details = { target: err.meta?.target };
     } else if (err.code === 'P2025') {
-      statusCode = 404; 
+      statusCode = 404; // Not Found
       message = `Resource not found: ${err.meta?.cause || 'record not found'}.`;
       details = { cause: err.meta?.cause };
     }

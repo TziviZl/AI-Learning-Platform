@@ -3,8 +3,8 @@ import dotenv from 'dotenv';
 import bodyParser from 'body-parser';
 import cors from 'cors';
 import helmet from 'helmet';
-import { apiLimiter } from './middleware/rateLimiter';
-import { errorHandler } from './middleware/errorHandler';
+import { apiLimiter } from './middlewares/rateLimiter';
+import { errorHandler } from './middlewares/errorHandler';
 import logger from './utils/logger';
 
 import userRoutes from './routes/user.routes';
@@ -15,13 +15,13 @@ import authRoutes from './routes/auth.routes';
 
 dotenv.config();
 
+const allowedOrigin = process.env.CORS_ORIGIN || 'http://localhost:5173'; // הוספת משתנה סביבה דינמי
 const corsOptions = {
-  origin: 'http://localhost:5173',
-  methods: ['GET', 'POST', 'PATCH', 'DELETE'],
+  origin: allowedOrigin, 
+  methods: ['GET', 'POST', 'PATCH', 'DELETE', 'PUT'], 
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true,
 };
-
 const app = express();
 const PORT = process.env.PORT || 5000;
 

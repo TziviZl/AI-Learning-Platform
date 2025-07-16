@@ -2017,3 +2017,242 @@ Argument `id`: Invalid value provided. Expected Int, provided String.
 2025-07-16T13:58:36.806Z [INFO]: Admin listed users with filters. Total: 9
 2025-07-16T13:59:37.928Z [INFO]: Fetched all categories
 2025-07-16T13:59:37.937Z [INFO]: Fetched all categories
+2025-07-16T17:54:12.147Z [INFO]: User 1 logged in successfully.
+2025-07-16T17:54:12.178Z [WARN]: Login failed: User with phone nonexistent not found.
+2025-07-16T17:54:12.184Z [WARN]: Login failed for user 1234567890: Invalid credentials.
+2025-07-16T17:54:12.187Z [INFO]: User 2 created successfully.
+2025-07-16T17:54:13.345Z [INFO]: Server running on port 5000
+2025-07-16T17:54:13.373Z [INFO]: User 1 created successfully.
+2025-07-16T17:54:13.374Z [INFO]: User registered: 1
+2025-07-16T17:54:13.385Z [WARN]: Registration attempt with existing phone number: 0501234567
+2025-07-16T17:54:13.386Z [WARN]: Operational Error: Phone number already registered, Status: 409, Path: /api/auth/register
+2025-07-16T17:54:13.394Z [WARN]: Operational Error: Validation failed, Status: 400, Path: /api/auth/register
+2025-07-16T17:54:13.402Z [INFO]: User 1 logged in successfully.
+2025-07-16T17:54:13.403Z [INFO]: User logged in: 1
+2025-07-16T17:54:13.409Z [WARN]: Login failed: User with phone 0501234567 not found.
+2025-07-16T17:54:13.410Z [ERROR]: Login failed: Error: User not found
+2025-07-16T17:54:13.410Z [WARN]: Operational Error: User not found, Status: 404, Path: /api/auth/login
+2025-07-16T17:54:13.418Z [WARN]: Login failed for user 0501234567: Invalid credentials.
+2025-07-16T17:54:13.419Z [ERROR]: Login failed: Error: Invalid credentials
+2025-07-16T17:54:13.420Z [WARN]: Operational Error: Invalid credentials, Status: 401, Path: /api/auth/login
+2025-07-16T17:54:13.426Z [WARN]: Operational Error: Validation failed, Status: 400, Path: /api/auth/login
+2025-07-16T18:00:33.306Z [WARN]: Login failed: User with phone 1234567890 not found.
+2025-07-16T18:00:33.416Z [INFO]: User 5 created successfully.
+2025-07-16T18:00:33.914Z [INFO]: Server running on port 5000
+2025-07-16T18:00:33.936Z [INFO]: User 1 created successfully.
+2025-07-16T18:00:33.937Z [INFO]: User registered: 1
+2025-07-16T18:00:33.947Z [WARN]: Registration attempt with existing phone number: 0501234567
+2025-07-16T18:00:33.948Z [WARN]: Operational Error: Phone number already registered, Status: 409, Path: /api/auth/register
+2025-07-16T18:00:33.954Z [WARN]: Operational Error: Validation failed, Status: 400, Path: /api/auth/register
+2025-07-16T18:00:33.959Z [INFO]: User 1 logged in successfully.
+2025-07-16T18:00:33.959Z [INFO]: User logged in: 1
+2025-07-16T18:00:33.964Z [WARN]: Login failed: User with phone 0501234567 not found.
+2025-07-16T18:00:33.964Z [ERROR]: Login failed: Error: User not found
+2025-07-16T18:00:33.965Z [WARN]: Operational Error: User not found, Status: 404, Path: /api/auth/login
+2025-07-16T18:00:33.971Z [WARN]: Login failed for user 0501234567: Invalid credentials.
+2025-07-16T18:00:33.972Z [ERROR]: Login failed: Error: Invalid credentials
+2025-07-16T18:00:33.972Z [WARN]: Operational Error: Invalid credentials, Status: 401, Path: /api/auth/login
+2025-07-16T18:00:33.976Z [WARN]: Operational Error: Validation failed, Status: 400, Path: /api/auth/login
+2025-07-16T18:03:44.819Z [INFO]: User 1 logged in successfully.
+2025-07-16T18:03:44.834Z [WARN]: Login failed: User with phone nonexistent not found.
+2025-07-16T18:03:44.837Z [WARN]: Login failed for user 1234567890: Invalid credentials.
+2025-07-16T18:03:44.838Z [INFO]: User 2 created successfully.
+2025-07-16T18:03:45.193Z [INFO]: Server running on port 5000
+2025-07-16T18:03:45.225Z [INFO]: User 1 created successfully.
+2025-07-16T18:03:45.226Z [INFO]: User registered: 1
+2025-07-16T18:03:45.249Z [WARN]: Registration attempt with existing phone number: 0501234567
+2025-07-16T18:03:45.250Z [WARN]: Operational Error: Phone number already registered, Status: 409, Path: /api/auth/register
+2025-07-16T18:03:45.260Z [WARN]: Operational Error: Validation failed, Status: 400, Path: /api/auth/register
+2025-07-16T18:03:45.268Z [INFO]: User 1 logged in successfully.
+2025-07-16T18:03:45.269Z [INFO]: User logged in: 1
+2025-07-16T18:03:45.282Z [WARN]: Login failed: User with phone 0501234567 not found.
+2025-07-16T18:03:45.283Z [ERROR]: Login failed: Error: User not found
+2025-07-16T18:03:45.283Z [WARN]: Operational Error: User not found, Status: 404, Path: /api/auth/login
+2025-07-16T18:03:45.291Z [WARN]: Login failed for user 0501234567: Invalid credentials.
+2025-07-16T18:03:45.292Z [ERROR]: Login failed: Error: Invalid credentials
+2025-07-16T18:03:45.292Z [WARN]: Operational Error: Invalid credentials, Status: 401, Path: /api/auth/login
+2025-07-16T18:03:45.299Z [WARN]: Operational Error: Validation failed, Status: 400, Path: /api/auth/login
+2025-07-16T18:07:02.573Z [INFO]: Server running on port 5000
+2025-07-16T18:07:02.609Z [INFO]: User 1 created successfully.
+2025-07-16T18:07:02.611Z [INFO]: User registered: 1
+2025-07-16T18:07:02.626Z [WARN]: Registration attempt with existing phone number: 0501234567
+2025-07-16T18:07:02.627Z [WARN]: Operational Error: Phone number already registered, Status: 409, Path: /api/auth/register
+2025-07-16T18:07:02.640Z [WARN]: Operational Error: Validation failed, Status: 400, Path: /api/auth/register
+2025-07-16T18:07:02.646Z [INFO]: User 1 logged in successfully.
+2025-07-16T18:07:02.647Z [INFO]: User logged in: 1
+2025-07-16T18:07:02.655Z [WARN]: Login failed: User with phone 0501234567 not found.
+2025-07-16T18:07:02.656Z [ERROR]: Login failed: Error: User not found
+2025-07-16T18:07:02.656Z [WARN]: Operational Error: User not found, Status: 404, Path: /api/auth/login
+2025-07-16T18:07:02.666Z [WARN]: Login failed for user 0501234567: Invalid credentials.
+2025-07-16T18:07:02.666Z [ERROR]: Login failed: Error: Invalid credentials
+2025-07-16T18:07:02.667Z [WARN]: Operational Error: Invalid credentials, Status: 401, Path: /api/auth/login
+2025-07-16T18:07:02.673Z [WARN]: Operational Error: Validation failed, Status: 400, Path: /api/auth/login
+2025-07-16T18:07:02.949Z [WARN]: Login failed: User with phone 1234567890 not found.
+2025-07-16T18:22:08.829Z [INFO]: User 1 logged in successfully.
+2025-07-16T18:22:08.844Z [INFO]: User 2 created successfully.
+2025-07-16T18:22:08.967Z [INFO]: Server running on port 5000
+2025-07-16T18:22:09.040Z [INFO]: User 1 created successfully.
+2025-07-16T18:22:09.041Z [INFO]: User registered: 1
+2025-07-16T18:22:09.075Z [WARN]: Registration attempt with existing phone number: 0501234567
+2025-07-16T18:22:09.078Z [WARN]: Operational Error: Phone number already registered, Status: 409, Path: /api/auth/register
+2025-07-16T18:22:09.089Z [WARN]: Operational Error: Validation failed, Status: 400, Path: /api/auth/register
+2025-07-16T18:22:09.098Z [INFO]: User 1 logged in successfully.
+2025-07-16T18:22:09.099Z [INFO]: User logged in: 1
+2025-07-16T18:22:09.106Z [WARN]: Login failed: User with phone 0501234567 not found.
+2025-07-16T18:22:09.107Z [ERROR]: Login failed: Error: User not found
+2025-07-16T18:22:09.107Z [WARN]: Operational Error: User not found, Status: 404, Path: /api/auth/login
+2025-07-16T18:22:09.116Z [WARN]: Login failed for user 0501234567: Invalid credentials.
+2025-07-16T18:22:09.116Z [ERROR]: Login failed: Error: Invalid credentials
+2025-07-16T18:22:09.117Z [WARN]: Operational Error: Invalid credentials, Status: 401, Path: /api/auth/login
+2025-07-16T18:22:09.125Z [WARN]: Operational Error: Validation failed, Status: 400, Path: /api/auth/login
+2025-07-16T18:31:10.917Z [INFO]: User 1 logged in successfully.
+2025-07-16T18:31:10.942Z [INFO]: User 2 created successfully.
+2025-07-16T18:31:11.971Z [INFO]: Server running on port 5000
+2025-07-16T18:31:12.055Z [INFO]: User 1 created successfully.
+2025-07-16T18:31:12.056Z [INFO]: User registered: 1
+2025-07-16T18:31:12.079Z [WARN]: Registration attempt with existing phone number: 0501234567
+2025-07-16T18:31:12.082Z [WARN]: Operational Error: Phone number already registered, Status: 409, Path: /api/auth/register
+2025-07-16T18:31:12.101Z [WARN]: Operational Error: Validation failed, Status: 400, Path: /api/auth/register
+2025-07-16T18:31:12.120Z [INFO]: User 1 logged in successfully.
+2025-07-16T18:31:12.122Z [INFO]: User logged in: 1
+2025-07-16T18:31:12.160Z [WARN]: Login failed: User with phone 0501234567 not found.
+2025-07-16T18:31:12.162Z [ERROR]: Login failed: Error: User not found
+2025-07-16T18:31:12.163Z [WARN]: Operational Error: User not found, Status: 404, Path: /api/auth/login
+2025-07-16T18:31:12.191Z [WARN]: Login failed for user 0501234567: Invalid credentials.
+2025-07-16T18:31:12.192Z [ERROR]: Login failed: Error: Invalid credentials
+2025-07-16T18:31:12.194Z [WARN]: Operational Error: Invalid credentials, Status: 401, Path: /api/auth/login
+2025-07-16T18:31:12.210Z [WARN]: Operational Error: Validation failed, Status: 400, Path: /api/auth/login
+2025-07-16T18:31:13.163Z [INFO]: Admin listed users with filters. Total: 1
+2025-07-16T18:31:13.221Z [ERROR]: Failed to list users: Error: DB error
+2025-07-16T18:31:13.232Z [INFO]: Admin fetched prompts for user 1
+2025-07-16T18:31:13.241Z [ERROR]: Failed to fetch prompts for user 1: Error: DB error
+2025-07-16T18:31:13.270Z [INFO]: Admin updated user 1 with data {"name":"NewName"}
+2025-07-16T18:31:13.282Z [ERROR]: Failed to update user 1: Error: Update failed
+2025-07-16T18:31:13.289Z [INFO]: Admin deleted user 1
+2025-07-16T18:31:13.294Z [ERROR]: Failed to delete user 1: Error: Delete failed
+2025-07-16T18:39:32.072Z [INFO]: User 1 logged in successfully.
+2025-07-16T18:39:32.086Z [INFO]: User 2 created successfully.
+2025-07-16T18:39:32.894Z [INFO]: Server running on port 5000
+2025-07-16T18:39:32.926Z [INFO]: User 1 created successfully.
+2025-07-16T18:39:32.928Z [INFO]: User registered: 1
+2025-07-16T18:39:32.957Z [WARN]: Registration attempt with existing phone number: 0501234567
+2025-07-16T18:39:32.959Z [WARN]: Operational Error: Phone number already registered, Status: 409, Path: /api/auth/register
+2025-07-16T18:39:32.973Z [WARN]: Operational Error: Validation failed, Status: 400, Path: /api/auth/register
+2025-07-16T18:39:32.988Z [INFO]: User 1 logged in successfully.
+2025-07-16T18:39:32.989Z [INFO]: User logged in: 1
+2025-07-16T18:39:33.003Z [WARN]: Login failed: User with phone 0501234567 not found.
+2025-07-16T18:39:33.004Z [ERROR]: Login failed: Error: User not found
+2025-07-16T18:39:33.005Z [WARN]: Operational Error: User not found, Status: 404, Path: /api/auth/login
+2025-07-16T18:39:33.018Z [WARN]: Login failed for user 0501234567: Invalid credentials.
+2025-07-16T18:39:33.020Z [ERROR]: Login failed: Error: Invalid credentials
+2025-07-16T18:39:33.021Z [WARN]: Operational Error: Invalid credentials, Status: 401, Path: /api/auth/login
+2025-07-16T18:39:33.037Z [WARN]: Operational Error: Validation failed, Status: 400, Path: /api/auth/login
+2025-07-16T18:39:33.881Z [INFO]: Admin listed users with filters. Total: 1
+2025-07-16T18:39:33.900Z [ERROR]: Failed to list users: Error: Service failed
+2025-07-16T18:39:33.905Z [INFO]: Admin fetched prompts for user 1
+2025-07-16T18:39:33.908Z [ERROR]: Failed to fetch prompts for user 1: Error: Fail
+2025-07-16T18:39:33.925Z [INFO]: Admin updated user 1 with data {"name":"Updated"}
+2025-07-16T18:39:33.929Z [ERROR]: Failed to update user 1: Error: Update fail
+2025-07-16T18:39:33.933Z [INFO]: Admin deleted user 1
+2025-07-16T18:39:33.937Z [ERROR]: Failed to delete user 1: Error: Delete fail
+2025-07-16T18:42:37.074Z [INFO]: User 1 logged in successfully.
+2025-07-16T18:42:37.096Z [INFO]: User 2 created successfully.
+2025-07-16T18:42:37.889Z [INFO]: Admin listed users with filters. Total: 1
+2025-07-16T18:42:37.922Z [ERROR]: Failed to list users: Error: Service failed
+2025-07-16T18:42:37.929Z [INFO]: Admin fetched prompts for user 1
+2025-07-16T18:42:37.935Z [ERROR]: Failed to fetch prompts for user 1: Error: Fail
+2025-07-16T18:42:37.974Z [INFO]: Admin updated user 1 with data {"name":"Updated"}
+2025-07-16T18:42:37.981Z [ERROR]: Failed to update user 1: Error: Update fail
+2025-07-16T18:42:37.990Z [INFO]: Admin deleted user 1
+2025-07-16T18:42:37.997Z [ERROR]: Failed to delete user 1: Error: Delete fail
+2025-07-16T18:42:38.101Z [INFO]: Server running on port 5000
+2025-07-16T18:42:38.193Z [INFO]: User 1 created successfully.
+2025-07-16T18:42:38.197Z [INFO]: User registered: 1
+2025-07-16T18:42:38.229Z [WARN]: Registration attempt with existing phone number: 0501234567
+2025-07-16T18:42:38.232Z [WARN]: Operational Error: Phone number already registered, Status: 409, Path: /api/auth/register
+2025-07-16T18:42:38.250Z [WARN]: Operational Error: Validation failed, Status: 400, Path: /api/auth/register
+2025-07-16T18:42:38.270Z [INFO]: User 1 logged in successfully.
+2025-07-16T18:42:38.271Z [INFO]: User logged in: 1
+2025-07-16T18:42:38.286Z [WARN]: Login failed: User with phone 0501234567 not found.
+2025-07-16T18:42:38.288Z [ERROR]: Login failed: Error: User not found
+2025-07-16T18:42:38.290Z [WARN]: Operational Error: User not found, Status: 404, Path: /api/auth/login
+2025-07-16T18:42:38.304Z [WARN]: Login failed for user 0501234567: Invalid credentials.
+2025-07-16T18:42:38.305Z [ERROR]: Login failed: Error: Invalid credentials
+2025-07-16T18:42:38.307Z [WARN]: Operational Error: Invalid credentials, Status: 401, Path: /api/auth/login
+2025-07-16T18:42:38.327Z [WARN]: Operational Error: Validation failed, Status: 400, Path: /api/auth/login
+2025-07-16T18:43:34.259Z [INFO]: User 1 logged in successfully.
+2025-07-16T18:43:34.284Z [INFO]: User 2 created successfully.
+2025-07-16T18:43:34.971Z [INFO]: Server running on port 5000
+2025-07-16T18:43:35.029Z [INFO]: User 1 created successfully.
+2025-07-16T18:43:35.031Z [INFO]: User registered: 1
+2025-07-16T18:43:35.056Z [WARN]: Registration attempt with existing phone number: 0501234567
+2025-07-16T18:43:35.058Z [WARN]: Operational Error: Phone number already registered, Status: 409, Path: /api/auth/register
+2025-07-16T18:43:35.070Z [WARN]: Operational Error: Validation failed, Status: 400, Path: /api/auth/register
+2025-07-16T18:43:35.084Z [INFO]: User 1 logged in successfully.
+2025-07-16T18:43:35.085Z [INFO]: User logged in: 1
+2025-07-16T18:43:35.093Z [WARN]: Login failed: User with phone 0501234567 not found.
+2025-07-16T18:43:35.094Z [ERROR]: Login failed: Error: User not found
+2025-07-16T18:43:35.095Z [WARN]: Operational Error: User not found, Status: 404, Path: /api/auth/login
+2025-07-16T18:43:35.095Z [INFO]: Admin listed users with filters. Total: 1
+2025-07-16T18:43:35.105Z [WARN]: Login failed for user 0501234567: Invalid credentials.
+2025-07-16T18:43:35.106Z [ERROR]: Login failed: Error: Invalid credentials
+2025-07-16T18:43:35.107Z [WARN]: Operational Error: Invalid credentials, Status: 401, Path: /api/auth/login
+2025-07-16T18:43:35.115Z [ERROR]: Failed to list users: Error: Service failed
+2025-07-16T18:43:35.116Z [WARN]: Operational Error: Validation failed, Status: 400, Path: /api/auth/login
+2025-07-16T18:43:35.120Z [INFO]: Admin fetched prompts for user 1
+2025-07-16T18:43:35.126Z [ERROR]: Failed to fetch prompts for user 1: Error: Fail
+2025-07-16T18:43:35.156Z [INFO]: Admin updated user 1 with data {"name":"Updated"}
+2025-07-16T18:43:35.159Z [ERROR]: Failed to update user 1: Error: Update fail
+2025-07-16T18:43:35.165Z [INFO]: Admin deleted user 1
+2025-07-16T18:43:35.172Z [ERROR]: Failed to delete user 1: Error: Delete fail
+2025-07-16T19:05:34.507Z [INFO]: User 1 logged in successfully.
+2025-07-16T19:05:34.536Z [INFO]: User 2 created successfully.
+2025-07-16T19:05:35.731Z [INFO]: Server running on port 5000
+2025-07-16T19:05:35.789Z [INFO]: User 1 created successfully.
+2025-07-16T19:05:35.791Z [INFO]: User registered: 1
+2025-07-16T19:05:35.815Z [WARN]: Registration attempt with existing phone number: 0501234567
+2025-07-16T19:05:35.818Z [WARN]: Operational Error: Phone number already registered, Status: 409, Path: /api/auth/register
+2025-07-16T19:05:35.828Z [WARN]: Operational Error: Validation failed, Status: 400, Path: /api/auth/register
+2025-07-16T19:05:35.838Z [INFO]: User 1 logged in successfully.
+2025-07-16T19:05:35.839Z [INFO]: User logged in: 1
+2025-07-16T19:05:35.850Z [WARN]: Login failed: User with phone 0501234567 not found.
+2025-07-16T19:05:35.851Z [ERROR]: Login failed: Error: User not found
+2025-07-16T19:05:35.852Z [WARN]: Operational Error: User not found, Status: 404, Path: /api/auth/login
+2025-07-16T19:05:35.870Z [WARN]: Login failed for user 0501234567: Invalid credentials.
+2025-07-16T19:05:35.871Z [ERROR]: Login failed: Error: Invalid credentials
+2025-07-16T19:05:35.872Z [WARN]: Operational Error: Invalid credentials, Status: 401, Path: /api/auth/login
+2025-07-16T19:05:35.879Z [WARN]: Operational Error: Validation failed, Status: 400, Path: /api/auth/login
+2025-07-16T19:21:52.180Z [INFO]: User 1 logged in successfully.
+2025-07-16T19:21:52.196Z [INFO]: User 2 created successfully.
+2025-07-16T19:21:52.908Z [INFO]: Server running on port 5000
+2025-07-16T19:21:52.947Z [INFO]: User 1 created successfully.
+2025-07-16T19:21:52.949Z [INFO]: User registered: 1
+2025-07-16T19:21:52.969Z [WARN]: Registration attempt with existing phone number: 0501234567
+2025-07-16T19:21:52.971Z [WARN]: Operational Error: Phone number already registered, Status: 409, Path: /api/auth/register
+2025-07-16T19:21:52.982Z [WARN]: Operational Error: Validation failed, Status: 400, Path: /api/auth/register
+2025-07-16T19:21:52.991Z [INFO]: User 1 logged in successfully.
+2025-07-16T19:21:52.991Z [INFO]: User logged in: 1
+2025-07-16T19:21:52.999Z [WARN]: Login failed: User with phone 0501234567 not found.
+2025-07-16T19:21:53.000Z [ERROR]: Login failed: Error: User not found
+2025-07-16T19:21:53.001Z [WARN]: Operational Error: User not found, Status: 404, Path: /api/auth/login
+2025-07-16T19:21:53.013Z [WARN]: Login failed for user 0501234567: Invalid credentials.
+2025-07-16T19:21:53.013Z [ERROR]: Login failed: Error: Invalid credentials
+2025-07-16T19:21:53.014Z [WARN]: Operational Error: Invalid credentials, Status: 401, Path: /api/auth/login
+2025-07-16T19:21:53.020Z [WARN]: Operational Error: Validation failed, Status: 400, Path: /api/auth/login
+2025-07-16T19:24:18.931Z [INFO]: User 1 logged in successfully.
+2025-07-16T19:24:18.954Z [INFO]: User 2 created successfully.
+2025-07-16T19:24:20.561Z [INFO]: Server running on port 5000
+2025-07-16T19:24:20.678Z [INFO]: User 1 created successfully.
+2025-07-16T19:24:20.684Z [INFO]: User registered: 1
+2025-07-16T19:24:20.728Z [WARN]: Registration attempt with existing phone number: 0501234567
+2025-07-16T19:24:20.733Z [WARN]: Operational Error: Phone number already registered, Status: 409, Path: /api/auth/register
+2025-07-16T19:24:20.776Z [WARN]: Operational Error: Validation failed, Status: 400, Path: /api/auth/register
+2025-07-16T19:24:20.809Z [INFO]: User 1 logged in successfully.
+2025-07-16T19:24:20.812Z [INFO]: User logged in: 1
+2025-07-16T19:24:20.845Z [WARN]: Login failed: User with phone 0501234567 not found.
+2025-07-16T19:24:20.852Z [ERROR]: Login failed: Error: User not found
+2025-07-16T19:24:20.856Z [WARN]: Operational Error: User not found, Status: 404, Path: /api/auth/login
+2025-07-16T19:24:20.891Z [WARN]: Login failed for user 0501234567: Invalid credentials.
+2025-07-16T19:24:20.893Z [ERROR]: Login failed: Error: Invalid credentials
+2025-07-16T19:24:20.896Z [WARN]: Operational Error: Invalid credentials, Status: 401, Path: /api/auth/login
+2025-07-16T19:24:20.925Z [WARN]: Operational Error: Validation failed, Status: 400, Path: /api/auth/login

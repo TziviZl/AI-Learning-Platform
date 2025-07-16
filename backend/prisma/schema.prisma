@@ -19,7 +19,7 @@ model User {
 
 model Category {
   id            Int           @id @default(autoincrement())
-  name          String
+  name          String        @unique
   prompts       Prompt[]
   subCategories SubCategory[]
 }
@@ -30,6 +30,7 @@ model SubCategory {
   categoryId Int
   prompts    Prompt[]
   category   Category @relation(fields: [categoryId], references: [id])
+  @@unique([name, categoryId])
 }
 
 model Prompt {

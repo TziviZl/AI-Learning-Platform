@@ -1,8 +1,8 @@
 import { Router } from 'express';
 import * as authController from '../controllers/auth.controller';
-import { validate } from '../middleware/validateRequest'; // Import the validation middleware
+import { validate } from '../middlewares/validateRequest'; // Import the validation middleware
 import { registerSchema, loginSchema } from '../schemas/authSchemas'; // Import the schemas
-import { ensurePhoneUnique } from '../middleware/db.middleware'; // Import the middleware to check phone uniqueness
+import { ensurePhoneUnique } from '../middlewares/db.middleware'; // Import the middleware to check phone uniqueness
 
 const router = Router();
 
