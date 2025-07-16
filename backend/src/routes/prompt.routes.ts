@@ -1,12 +1,15 @@
 import express from 'express';
 import { createPrompt } from '../controllers/prompt.controller';
-import { validateBodyFields } from '../middleware/validate';
+import { validate } from '../middleware/validateRequest';
+import { createPromptSchema } from '../schemas/promptSchemas'; 
+import { authenticate } from '../middleware/auth.middleware';
 
 const router = express.Router();
 
 router.post(
   '/',
-  validateBodyFields(['userId', 'categoryId', 'subCategoryId', 'promptText']),
+  authenticate, 
+  validate(createPromptSchema),
   createPrompt
 );
 

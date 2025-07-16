@@ -1,12 +1,40 @@
 version: '3.8'
+
 services:
   db:
     image: postgres:15
     restart: always
     environment:
-      POSTGRES_USER: myuser
-      POSTGRES_PASSWORD: mypass
-      POSTGRES_DB: learning_db
+      POSTGRES_DB: ${DB_NAME} 
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - db_data:/var/lib/postgresql/data 
     ports:
       - "5432:5432"
 
+  backend:
+    build: ./backend
+    restart: always
+    ports:
+      - "5000:5000"
+    environment:
+      DATABASE_URL: postgresql://${DB_USER}:${DB_PASSWORD}@db:5432/${DB_NAME}?schema=public
+      OPENAI_API_KEY: ${OPENAI_API_KEY} 
+      JWT_SECRET: ${JWT_SECRET}
+      PORT: ${PORT} 
+    depends_on:
+      - db 
+    command: sh -c "npx prisma migrate deploy && npm run start" 
+  frontend:
+    build: ./frontend
+    restart: always
+    ports:
+      - "5173:5173" 
+    environment:
+      VITE_API_URL: ${VITE_API_URL}
+    depends_on:
+      - backend 
+
+volumes:
+  db_data: 

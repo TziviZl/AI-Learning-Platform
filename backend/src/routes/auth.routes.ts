@@ -1,8 +1,19 @@
-import express from 'express';
-import { login } from '../controllers/auth.controller';
+import { Router } from 'express';
+import * as authController from '../controllers/auth.controller';
+import { validate } from '../middleware/validateRequest'; // Import the validation middleware
+import { registerSchema, loginSchema } from '../schemas/authSchemas'; // Import the schemas
+import { ensurePhoneUnique } from '../middleware/db.middleware'; // Import the middleware to check phone uniqueness
 
-const router = express.Router();
+const router = Router();
 
-router.post('/login', login);
+router.post(
+  '/register',
+  validate(registerSchema), 
+  ensurePhoneUnique(),      
+  authController.register 
+);
+
+// Route for user login
+router.post('/login', validate(loginSchema), authController.login);
 
 export default router;

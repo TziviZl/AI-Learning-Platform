@@ -2,17 +2,8 @@ import { Request, Response, NextFunction } from 'express';
 import * as userService from '../services/user.service';
 import logger from '../utils/logger';
 
-export const createUser = async (req: Request, res: Response, next: NextFunction) => {
-  try {
-    const { name, phone, password } = req.body;
-    const user = await userService.createUser(name, phone, password);
-    logger.info(`Created user with phone ${phone}`);
-    res.json(user);
-  } catch (err) {
-    logger.error(`Failed to create user with phone ${req.body.phone}: ${err}`);
-    next(err);
-  }
-};
+// Removed createUser function from here.
+// User creation (registration) is handled by auth.controller.ts and auth.service.ts.
 
 export const getUserPrompts = async (req: Request, res: Response, next: NextFunction) => {
   try {
@@ -29,10 +20,16 @@ export const getUserPrompts = async (req: Request, res: Response, next: NextFunc
 export const updateSelf = async (req: Request, res: Response, next: NextFunction) => {
   let userId;
   try {
-    userId = (req as any).user.userId;
+    userId = (req as any).user.userId; // Assuming userId is attached by auth middleware
     const user = await userService.updateSelf(userId, req.body);
+
+    if (!user) {
+      logger.warn(`User ${userId} attempted to update non-existent profile.`);
+      return res.status(404).json({ message: 'User not found or unable to update.' });
+    }
+
     logger.info(`User ${userId} updated own profile with data ${JSON.stringify(req.body)}`);
-    res.json(user);
+    res.json({ user });
   } catch (err) {
     logger.error(`User ${userId} failed to update profile: ${err}`);
     next(err);

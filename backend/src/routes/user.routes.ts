@@ -1,18 +1,13 @@
 import express from 'express';
-import { createUser, getUserPrompts, updateSelf } from '../controllers/user.controller';
-import { validateBodyFields, validatePhoneField, validateIdParam } from '../middleware/validate';
-import { ensurePhoneUnique } from '../middleware/dbCheck';
-import { authenticate } from '../middleware/auth';
+import { getUserPrompts, updateSelf } from '../controllers/user.controller'; // createUser removed from import
+import { validateIdParam, validate } from '../middleware/validateRequest';
+import { authenticate } from '../middleware/auth.middleware';
+import { updateProfileSchema } from '../schemas/authSchemas'; // registerSchema removed from import
 
 const router = express.Router();
 
-router.post(
-  '/',
-  validateBodyFields(['name', 'phone', 'password']),
-  validatePhoneField('phone'),
-  ensurePhoneUnique(),
-  createUser
-);
+// Removed the POST / route for user creation.
+// User registration is handled by /api/auth/register.
 
 router.get(
   '/:id/prompts',
@@ -23,6 +18,7 @@ router.get(
 router.patch(
   '/me',
   authenticate,
+  validate(updateProfileSchema),
   updateSelf
 );
 

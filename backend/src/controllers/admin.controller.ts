@@ -1,12 +1,27 @@
 import { Request, Response, NextFunction } from 'express';
 import * as adminService from '../services/admin.service';
 import logger from '../utils/logger';
+import AppError from '../utils/AppError';
 
-export const listUsers = async (_req: Request, res: Response, next: NextFunction) => {
+interface ListUsersRequest extends Request {
+  query: {
+    page?: string;
+    limit?: string;
+    role?: 'user' | 'admin' | '';
+    search?: string;
+  };
+}
+
+export const listUsers = async (req: ListUsersRequest, res: Response, next: NextFunction) => {
   try {
-    const users = await adminService.listUsers();
-    logger.info(`Admin listed all users`);
-    res.json(users);
+    const page = req.query.page ? parseInt(req.query.page) : undefined;
+    const limit = req.query.limit ? parseInt(req.query.limit) : undefined;
+    const role = req.query.role;
+    const search = req.query.search;
+
+    const { users, totalCount } = await adminService.listUsers({ page, limit, role, search });
+    logger.info(`Admin listed users with filters. Total: ${totalCount}`);
+    res.json({ users, totalCount });
   } catch (err) {
     logger.error(`Failed to list users: ${err}`);
     next(err);
