@@ -3,6 +3,9 @@ import dotenv from 'dotenv';
 import bodyParser from 'body-parser';
 import cors from 'cors';
 import helmet from 'helmet';
+import path from 'path'; 
+import favicon from 'serve-favicon'; 
+
 import { apiLimiter } from './middlewares/rateLimiter';
 import { errorHandler } from './middlewares/errorHandler';
 import logger from './utils/logger';
@@ -23,7 +26,7 @@ console.log(`OPENAI_API_KEY: ${process.env.OPENAI_API_KEY ? 'Loaded' : 'NOT LOAD
 console.log(`PORT (from env): ${process.env.PORT}`);
 console.log(`CORS_ORIGIN (from env): ${process.env.CORS_ORIGIN}`);
 
-const allowedOrigin = process.env.CORS_ORIGIN || 'http://localhost:5173'; // הוספת משתנה סביבה דינמי
+const allowedOrigin = process.env.CORS_ORIGIN || 'http://localhost:5173'; 
 const corsOptions = {
   origin: allowedOrigin, 
   methods: ['GET', 'POST', 'PATCH', 'DELETE', 'PUT'], 
@@ -36,6 +39,10 @@ const PORT = process.env.PORT || 5000;
 app.use(cors(corsOptions));
 app.use(bodyParser.json());
 app.use(helmet());
+
+app.use(favicon(path.join(__dirname, 'favicon.ico')));
+
+
 app.use('/api/', apiLimiter);
 
 app.get('/', (req, res) => {
