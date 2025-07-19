@@ -84,7 +84,10 @@ export const loginUser = createAsyncThunk<
                 // Reject with a specific string that can be caught in extraReducers
                 return rejectWithValue('User not found');
             }
-            return rejectWithValue(errorMessage);
+            if (errorMessage === 'Invalid credentials'){
+                return rejectWithValue('Incorrect password');
+            }
+             return rejectWithValue(errorMessage);
         }
     }
 );

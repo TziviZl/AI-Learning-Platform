@@ -40,8 +40,8 @@ export const login = async (phone: string, password: string): Promise<{ user: Us
   const isPasswordValid = await bcrypt.compare(password, user.password);
 
   if (!isPasswordValid) {
-    logger.warn(`Login failed for user ${phone}: Invalid credentials.`);
-    throw new AppError('Invalid credentials', 401); 
+    logger.warn(`Login failed for user ${phone}: Incorrect password`);
+    throw new AppError('Incorrect password', 401); 
   }
 
   const token = jwt.sign({ userId: user.id, role: user.role }, process.env.JWT_SECRET!, {

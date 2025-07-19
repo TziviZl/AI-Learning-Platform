@@ -10,21 +10,16 @@ WORKDIR /app
 
 COPY package*.json ./
 
-RUN npm install --frozen-lockfile 
+RUN npm ci
 
 COPY . .
 
 RUN npx prisma generate
-RUN npx prisma migrate deploy
-RUN npx ts-node src/scripts/createAdmin.ts 
-RUN npx ts-node src/scripts/seed.ts      
 
 RUN npm run build
 
 RUN cp src/favicon.ico dist/favicon.ico
 
-EXPOSE 10000 
-
-ENV NODE_TLS_REJECT_UNAUTHORIZED=0
+EXPOSE 5000 
 
 CMD [ "node", "dist/app.js" ]
