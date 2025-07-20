@@ -2256,3 +2256,18 @@ Argument `id`: Invalid value provided. Expected Int, provided String.
 2025-07-16T19:24:20.893Z [ERROR]: Login failed: Error: Invalid credentials
 2025-07-16T19:24:20.896Z [WARN]: Operational Error: Invalid credentials, Status: 401, Path: /api/auth/login
 2025-07-16T19:24:20.925Z [WARN]: Operational Error: Validation failed, Status: 400, Path: /api/auth/login
+2025-07-20T04:25:47.486Z [ERROR]: Unhandled Server Error: PrismaClientInitializationError: 
+Invalid `prisma.user.findUnique()` invocation in
+C:\Users\user1\Desktop\learning-platform\backend\src\middlewares\db.middleware.ts:35:42
+
+  32 if (!phone) {
+  33   return next(new AppError('Phone number is required for registration', 400));
+  34 }
+→ 35 const existingUser = await prisma.user.findUnique(
+Can't reach database server at `localhost:5432`
+
+Please make sure your database server is running at `localhost:5432`.
+    at ri.handleRequestError (C:\Users\user1\Desktop\learning-platform\backend\node_modules\@prisma\client\src\runtime\RequestHandler.ts:242:13)
+    at ri.handleAndLogRequestError (C:\Users\user1\Desktop\learning-platform\backend\node_modules\@prisma\client\src\runtime\RequestHandler.ts:174:12)
+    at ri.request (C:\Users\user1\Desktop\learning-platform\backend\node_modules\@prisma\client\src\runtime\RequestHandler.ts:143:12)
+    at l (C:\Users\user1\Desktop\learning-platform\backend\node_modules\@prisma\client\src\runtime\getPrismaClient.ts:862:24)

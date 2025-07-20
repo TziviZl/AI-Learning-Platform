@@ -1,0 +1,722 @@
+openapi: 3.0.0
+info:
+  title: AI-Driven Learning Platform API
+  description: API for a mini learning platform allowing users to select topics, get AI-generated lessons, and view learning history.
+  version: 1.0.0
+servers:
+  - url: ${BACKEND_URL}/api
+    description: Local development server (default)
+security:
+  - bearerAuth: []
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  schemas:
+    User:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+          description: Unique identifier for the user.
+        name:
+          type: string
+          description: User's name.
+        phone:
+          type: string
+          description: User's unique phone number.
+        role:
+          type: string
+          enum: [USER, ADMIN]
+          default: USER
+          description: User's role (user or admin).
+        createdAt:
+          type: string
+          format: date-time
+          description: Timestamp when the user was created.
+      required:
+        - id
+        - name
+        - phone
+        - role
+        - createdAt
+    Category:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+          description: Unique identifier for the category.
+        name:
+          type: string
+          description: Name of the category.
+      required:
+        - id
+        - name
+    SubCategory:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+          description: Unique identifier for the sub-category.
+        name:
+          type: string
+          description: Name of the sub-category.
+        categoryId:
+          type: integer
+          format: int32
+          description: ID of the parent category.
+      required:
+        - id
+        - name
+        - categoryId
+    Prompt:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+          description: Unique identifier for the prompt.
+        userId:
+          type: integer
+          format: int32
+          description: ID of the user who created the prompt.
+        categoryId:
+          type: integer
+          format: int32
+          description: ID of the category for the prompt.
+        subCategoryId:
+          type: integer
+          format: int32
+          description: ID of the sub-category for the prompt.
+        prompt:
+          type: string
+          description: The text prompt sent to the AI.
+        response:
+          type: string
+          description: The AI-generated lesson response.
+        createdAt:
+          type: string
+          format: date-time
+          description: Timestamp when the prompt was created.
+      required:
+        - id
+        - userId
+        - categoryId
+        - subCategoryId
+        - prompt
+        - response
+        - createdAt
+    AuthResponse:
+      type: object
+      properties:
+        user:
+          $ref: '#/components/schemas/User'
+        token:
+          type: string
+          description: JWT authentication token.
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Error message.
+        status:
+          type: integer
+          description: HTTP status code.
+paths:
+  /auth/register:
+    post:
+      summary: Register a new user
+      tags:
+        - Authentication
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: User's name.
+                  example: John Doe
+                phone:
+                  type: string
+                  description: User's unique phone number.
+                  example: "0501234567"
+                password:
+                  type: string
+                  format: password
+                  description: User's password (min length, complexity might be validated by schema).
+                  example: myStrongPassword123
+              required:
+                - name
+                - phone
+                - password
+      responses:
+        '201':
+          description: User successfully registered.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthResponse'
+        '400':
+          description: Bad Request (e.g., validation failed, phone number already exists).
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal Server Error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /auth/login:
+    post:
+      summary: Login an existing user
+      tags:
+        - Authentication
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                phone:
+                  type: string
+                  description: User's phone number.
+                  example: "0501234567"
+                password:
+                  type: string
+                  format: password
+                  description: User's password.
+                  example: myStrongPassword123
+              required:
+                - phone
+                - password
+      responses:
+        '200':
+          description: User successfully logged in.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthResponse'
+        '400':
+          description: Bad Request (e.g., validation failed).
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Unauthorized (invalid credentials).
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal Server Error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /categories:
+    get:
+      summary: Get all categories
+      tags:
+        - Categories
+      responses:
+        '200':
+          description: A list of categories.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Category'
+        '500':
+          description: Internal Server Error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /categories/{id}/sub-categories:
+    get:
+      summary: Get sub-categories for a specific category
+      tags:
+        - Categories
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+            format: int32
+          required: true
+          description: Numeric ID of the category.
+      responses:
+        '200':
+          description: A list of sub-categories for the given category.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SubCategory'
+        '400':
+          description: Bad Request (e.g., invalid ID format).
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Category not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal Server Error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /prompts:
+    post:
+      summary: Create a new prompt (AI lesson request)
+      tags:
+        - Prompts
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                userId:
+                  type: integer
+                  format: int32
+                  description: The ID of the user creating the prompt.
+                  example: 1
+                categoryId:
+                  type: integer
+                  format: int32
+                  description: The ID of the selected category.
+                  example: 1
+                subCategoryId:
+                  type: integer
+                  format: int32
+                  description: The ID of the selected sub-category.
+                  example: 1
+                promptText:
+                  type: string
+                  description: The user's prompt text for the AI.
+                  example: "Teach me about black holes in simple terms."
+              required:
+                - userId
+                - categoryId
+                - subCategoryId
+                - promptText
+      responses:
+        '200':
+          description: Prompt successfully created and AI response received.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Prompt'
+        '400':
+          description: Bad Request (e.g., validation failed).
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Unauthorized (missing or invalid token).
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal Server Error (e.g., OpenAI API error, database error).
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /users/{id}/prompts:
+    get:
+      summary: Get a user's prompt history
+      tags:
+        - Users
+      security:
+        - bearerAuth: [] # Assuming this requires authentication for regular users to view their own history.
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+            format: int32
+          required: true
+          description: Numeric ID of the user.
+      responses:
+        '200':
+          description: A list of prompts for the specified user.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Prompt'
+        '400':
+          description: Bad Request (e.g., invalid ID format).
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Unauthorized (missing or invalid token).
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Forbidden (if user tries to access another user's prompts without proper authorization).
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: User not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal Server Error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /users/me:
+    patch:
+      summary: Update the authenticated user's own profile
+      tags:
+        - Users
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: New name for the user.
+                  example: Jane Doe
+                phone:
+                  type: string
+                  description: New unique phone number for the user.
+                  example: "0529876543"
+                password:
+                  type: string
+                  format: password
+                  description: New password for the user.
+                  example: newSecurePass!
+                # Add other updatable fields as per your updateProfileSchema
+              minProperties: 1 # At least one field must be provided for update
+      responses:
+        '200':
+          description: User profile successfully updated.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  user:
+                    $ref: '#/components/schemas/User'
+        '400':
+          description: Bad Request (e.g., validation failed, phone number taken).
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Unauthorized (missing or invalid token).
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: User not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal Server Error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /admin/users:
+    get:
+      summary: Get a list of all users (Admin only)
+      tags:
+        - Admin
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: query
+          name: page
+          schema:
+            type: integer
+            format: int32
+            minimum: 1
+          description: Page number for pagination.
+        - in: query
+          name: limit
+          schema:
+            type: integer
+            format: int32
+            minimum: 1
+          description: Number of items per page for pagination.
+        - in: query
+          name: role
+          schema:
+            type: string
+            enum: [user, admin]
+          description: Filter users by role.
+        - in: query
+          name: search
+          schema:
+            type: string
+          description: Search users by name or phone.
+      responses:
+        '200':
+          description: A list of users with total count.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  users:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/User'
+                  totalCount:
+                    type: integer
+                    format: int32
+                    description: Total number of users matching the criteria.
+        '401':
+          description: Unauthorized (missing or invalid token).
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Forbidden (not an admin).
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal Server Error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /admin/users/{id}/prompts:
+    get:
+      summary: Get all prompts for a specific user (Admin only)
+      tags:
+        - Admin
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+            format: int32
+          required: true
+          description: Numeric ID of the user.
+      responses:
+        '200':
+          description: A list of prompts for the specified user.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Prompt'
+        '400':
+          description: Bad Request (e.g., invalid ID format).
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Unauthorized (missing or invalid token).
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Forbidden (not an admin).
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: User not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal Server Error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /admin/users/{id}:
+    patch:
+      summary: Update a user's profile by ID (Admin only)
+      tags:
+        - Admin
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+            format: int32
+          required: true
+          description: Numeric ID of the user to update.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: New name for the user.
+                  example: Jane Admin
+                phone:
+                  type: string
+                  description: New unique phone number for the user.
+                  example: "0531234567"
+                password:
+                  type: string
+                  format: password
+                  description: New password for the user.
+                  example: AdminPass1!
+                role:
+                  type: string
+                  enum: [USER, ADMIN]
+                  description: New role for the user.
+                  example: ADMIN
+              minProperties: 1 # At least one field must be provided for update
+      responses:
+        '200':
+          description: User profile successfully updated by admin.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '400':
+          description: Bad Request (e.g., validation failed, phone number taken).
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Unauthorized (missing or invalid token).
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Forbidden (not an admin).
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: User not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal Server Error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    delete:
+      summary: Delete a user by ID (Admin only)
+      tags:
+        - Admin
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+            format: int32
+          required: true
+          description: Numeric ID of the user to delete.
+      responses:
+        '200':
+          description: User successfully deleted.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: User 123 deleted
+        '400':
+          description: Bad Request (e.g., invalid ID format).
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Unauthorized (missing or invalid token).
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Forbidden (not an admin).
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: User not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal Server Error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'

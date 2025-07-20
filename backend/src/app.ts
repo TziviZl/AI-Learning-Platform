@@ -5,6 +5,9 @@ import cors from 'cors';
 import helmet from 'helmet';
 import path from 'path'; 
 import favicon from 'serve-favicon'; 
+import swaggerUi from 'swagger-ui-express';
+import YAML from 'yamljs';
+import * as fs from 'fs';
 
 import { apiLimiter } from './middlewares/rateLimiter';
 import { errorHandler } from './middlewares/errorHandler';
@@ -42,6 +45,16 @@ app.use(helmet());
 
 app.use(favicon(path.join(__dirname, 'favicon.ico')));
 
+const swaggerFilePath = path.join(__dirname, 'swagger.yaml');
+const swaggerContent = fs.readFileSync(swaggerFilePath, 'utf8');
+
+const processedSwaggerContent = swaggerContent.replace(/\${(.*?)}/g, (match, p1) => {
+  return process.env[p1] || '';
+});
+
+const swaggerDocument = YAML.parse(processedSwaggerContent);
+
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 app.use('/api/', apiLimiter);
 
