@@ -106,31 +106,31 @@ cd AI-Learning-Platform
 ```
 
 ### 2. Environment Variables
+Create a **single `.env` file** in the **root directory** of your project (e.g., `AI-Learning-Platform/.env`). This file will be loaded automatically by Docker Compose and its variables will be passed to the relevant services.
 
-#### Root `.env`
-```env
-DB_NAME=learning_platform_db
-DB_USER=lp_user
-DB_PASSWORD=lp_password
-JWT_SECRET=your_super_secret_jwt_key_here_for_prod
-OPENAI_API_KEY=sk-proj-YOUR_OPENAI_API_KEY_HERE
-```
+**`./.env` (Root Environment Variables)**
 
-#### `backend/.env`
-```env
-DATABASE_URL="postgresql://lp_user:lp_password@db:5432/learning_platform_db?schema=public"
-PORT=10000
-JWT_SECRET=your_super_secret_jwt_key_here_for_prod
-OPENAI_API_KEY=sk-proj-YOUR_OPENAI_API_KEY_HERE
+```dotenv
+# Database Credentials (used by 'db' service in docker-compose.yml)
+# These values configure the PostgreSQL database container.
+DB_NAME=learning_db
+DB_USER=myuser
+DB_PASSWORD=mypass
+
+# Backend Application Configuration (variables passed to 'backend' service)
+# DATABASE_URL_LOCAL is used by docker-compose to construct the DATABASE_URL environment variable inside the backend container.
+# This URL specifies how the backend connects to the database service within the Docker network.
+# Ensure that DB_USER, DB_PASSWORD, and DB_NAME here match the values above.
+DATABASE_URL_LOCAL="postgresql://${DB_USER}:${DB_PASSWORD}@db:5432/${DB_NAME}?schema=public"
+OPENAI_API_KEY="sk-proj-YOUR_OPENAI_API_KEY_HERE" # Replace with your actual OpenAI API Key (entire string on one line).
+JWT_SECRET=supersecretkey # Replace with a strong, random, and unique string.
+
 NODE_ENV=development
-BACKEND_URL=http://localhost:5000
-```
 
-#### `frontend/.env`
-```env
-VITE_API_URL=http://localhost:5000/api
+# CORS Origin (Important for Frontend-Backend communication)
+# For local development, this should be the URL of your frontend.
+CORS_ORIGIN=http://localhost:5173 
 ```
-
 ### 3. Install Dependencies
 
 ```bash
@@ -146,10 +146,25 @@ cd ..
 ```
 
 ### 4. Make Entrypoint Executable
-```bash
-chmod +x backend/docker-entrypoint.sh
-```
 
+This step ensures that the entrypoint scripts within the Docker containers have execution permissions and are correctly formatted for a Linux environment.
+
+1.  **Grant Execution Permissions (if on Unix-like OS):**
+    If you are on a Unix-like operating system (Linux, macOS), you might need to ensure the entrypoint script has execution permissions:
+    ```bash
+    chmod +x frontend/docker-entrypoint.sh
+    ```
+    **Note for Windows Users (Docker Desktop):** You typically **do not need to execute this `chmod` command manually** in your Windows terminal. Docker Desktop handles file permissions automatically when copying files into Linux-based containers.
+
+2.  **Ensure Correct Line Endings (Crucial for Windows Users):**
+    For the `docker-entrypoint.sh` file located in the `frontend/` directory, it is **critical** that its line endings are set to **LF (Line Feed)**, which is the standard for Linux/Unix systems. Windows often defaults to **CRLF (Carriage Return and Line Feed)**, which can cause "no such file or directory" errors in Linux containers.
+
+    * Open `frontend/docker-entrypoint.sh` in a robust code editor (like Visual Studio Code, Notepad++, or Sublime Text).
+    * Find the "line endings" or "EOL (End of Line) Conversion" setting in your editor (often in the status bar at the bottom, or under the `View` / `Edit` menu).
+    * Change the setting from `CRLF` (or anything else) to **`LF`**.
+    * Save the file after making this change.
+
+    Regardless of your operating system, Docker will ensure the script has the correct execution permissions inside the container during the build process, but correct line endings are essential for it to run successfully.
 ### 5. Run with Docker Compose
 ```bash
 docker-compose up -d --build
@@ -202,41 +217,6 @@ This will:
 
 ---
 
-## 🧠 Assumptions
-
-- Israeli phone format (10 digits starting with 05)
-- Two roles: USER and ADMIN
-- `VITE_API_URL`: http://localhost:5000/api
-- Backend internal port: 10000
-- Environment variable consistency is required
-
----
-
-## 🧪 Troubleshooting
-
-### ❌ Can't connect to Database
-```bash
-docker-compose ps
-docker-compose logs db
-docker-compose down -v
-docker-compose up -d --build
-```
-
-### ❌ 401 / 403 Errors
-- Check token in Authorization header
-- Validate JWT_SECRET
-- Confirm user role
-
-### ❌ Validation Errors
-- Check `details` field in API response
-- Match input to Zod schemas
-
-### ❌ Frontend can't reach Backend
-- Confirm `VITE_API_URL`
-- Open DevTools → Network tab
-- Run `docker-compose logs backend`
-
----
 
 ## 📞 Contact 
 📧 Tzivi9763@gmail.com  
