@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { Provider, useSelector, useDispatch } from 'react-redux';
 import { store, RootState } from './store';
-import { setInitialAuthLoaded } from './store/slices/authSlice';
+import { setInitialAuthLoaded } from './store/slices/auth/authSlice';
 
 import ProtectedRoute from './components/ProtectedRoute';
 import Login from './pages/Login';

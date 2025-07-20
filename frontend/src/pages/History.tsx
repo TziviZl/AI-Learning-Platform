@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { Clock, BookOpen, MessageSquare } from 'lucide-react';
 import { RootState, useAppDispatch } from '../store';
-import { fetchUserPrompts } from '../store/slices/promptsSlice';
+import { fetchUserPrompts } from '../store/slices/prompts/promptsThunks';
 import Layout from '../components/Layout';
 
 const History: React.FC = () => {

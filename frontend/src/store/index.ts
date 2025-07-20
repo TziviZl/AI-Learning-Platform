@@ -1,8 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit';
-import authSlice from './slices/authSlice';
-import categoriesSlice from './slices/categoriesSlice';
-import promptsSlice from './slices/promptsSlice';
-import usersSlice from './slices/usersSlice';
+import authSlice from './slices/auth/authSlice';
+import categoriesSlice from './slices/categories/categoriesSlice';
+import promptsSlice from './slices/prompts/promptsSlice';
+import usersSlice from './slices/users/usersSlice';
 import { useDispatch } from 'react-redux';
 
 export const store = configureStore({

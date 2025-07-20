@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { LogOut, User, Home, History, Settings, Users } from 'lucide-react';
 import { RootState } from '../store';
-import { logout } from '../store/slices/authSlice';
+import { logout } from '../store/slices/auth/authSlice';
 
 interface LayoutProps {
   children: React.ReactNode;
