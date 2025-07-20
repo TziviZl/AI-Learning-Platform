@@ -238,7 +238,8 @@ docker-compose up -d --build
 
 ---
 
-## 📞 Contact
+## 📞 Contact 
+📧 Tzivi9763@gmail.com  
+For bug reports, questions, or feedback.
 
-**Tzivi Zl**  
-📧 tzivizl@example.com  
+
